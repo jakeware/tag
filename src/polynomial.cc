@@ -357,7 +357,7 @@ vector<double> find_roots(const Vector<11>& v)
 
 
 	vector<std::tuple<double, double, int, int, double, double> > intervals;
-	intervals.push_back(make_tuple(lower, upper, at_n_inf, at_p_inf, lower_val, upper_val));
+	intervals.push_back(std::make_tuple(lower, upper, at_n_inf, at_p_inf, lower_val, upper_val));
 
 	while(!intervals.empty())
 	{
@@ -378,9 +378,9 @@ vector<double> find_roots(const Vector<11>& v)
 
 
 			if(at_midpoint == at_lower)
-				intervals.push_back(make_tuple(midpoint, upper, at_midpoint, at_upper, midpoint_val, upper_val));
+				intervals.push_back(std::make_tuple(midpoint, upper, at_midpoint, at_upper, midpoint_val, upper_val));
 			else if(at_midpoint == at_upper)
-				intervals.push_back(make_tuple(lower, midpoint, at_lower, at_midpoint, lower_val, midpoint_val));
+				intervals.push_back(std::make_tuple(lower, midpoint, at_lower, at_midpoint, lower_val, midpoint_val));
 			else
 			{
 				//We've split the interval
@@ -398,7 +398,7 @@ vector<double> find_roots(const Vector<11>& v)
 						roots.push_back(root);
 				}
 				else
-					intervals.push_back(make_tuple(lower, midpoint, at_lower, at_midpoint, lower_val, midpoint_val));
+					intervals.push_back(std::make_tuple(lower, midpoint, at_lower, at_midpoint, lower_val, midpoint_val));
 
 				//Do the same with the upper interval
 				if(at_midpoint - at_upper == 1)
@@ -412,7 +412,7 @@ vector<double> find_roots(const Vector<11>& v)
 						roots.push_back(root);
 				}
 				else
-					intervals.push_back(make_tuple(midpoint, upper, at_midpoint, at_upper, midpoint_val, upper_val));
+					intervals.push_back(std::make_tuple(midpoint, upper, at_midpoint, at_upper, midpoint_val, upper_val));
 			}
 		}
 	}

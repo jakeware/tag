@@ -102,15 +102,15 @@ struct SturmChain10
 		f10 = p;
 		f9  = polydiff(p);
 
-		tie(q[10], f8) = neg_second(poly_div(f10, f9));
-		tie(q[ 9], f7) = neg_second(poly_div(f9,  f8));
-		tie(q[ 8], f6) = neg_second(poly_div(f8,  f7));
-		tie(q[ 7], f5) = neg_second(poly_div(f7,  f6));
-		tie(q[ 6], f4) = neg_second(poly_div(f6,  f5));
-		tie(q[ 5], f3) = neg_second(poly_div(f5,  f4));
-		tie(q[ 4], f2) = neg_second(poly_div(f4,  f3));
-		tie(q[ 3], f1) = neg_second(poly_div(f3,  f2));
-		tie(q[ 2], f0) = neg_second(poly_div(f2,  f1));
+		std::tie(q[10], f8) = neg_second(poly_div(f10, f9));
+		std::tie(q[ 9], f7) = neg_second(poly_div(f9,  f8));
+		std::tie(q[ 8], f6) = neg_second(poly_div(f8,  f7));
+		std::tie(q[ 7], f5) = neg_second(poly_div(f7,  f6));
+		std::tie(q[ 6], f4) = neg_second(poly_div(f6,  f5));
+		std::tie(q[ 5], f3) = neg_second(poly_div(f5,  f4));
+		std::tie(q[ 4], f2) = neg_second(poly_div(f4,  f3));
+		std::tie(q[ 3], f1) = neg_second(poly_div(f3,  f2));
+		std::tie(q[ 2], f0) = neg_second(poly_div(f2,  f1));
 	}
 
 	// The sturm chain is constructed so that:
@@ -329,7 +329,7 @@ vector<double> find_roots(const Vector<11>& v)
 	for(;;)
 	{
 		int c;
-		tie(c, upper_val) = s.changes(upper);
+		std::tie(c, upper_val) = s.changes(upper);
 
 		
 		if(at_n_inf - c < num_roots && upper < highest_root)
@@ -343,7 +343,7 @@ vector<double> find_roots(const Vector<11>& v)
 	for(;;)
 	{
 		int c;
-		tie(c, lower_val) = s.changes(lower);
+		std::tie(c, lower_val) = s.changes(lower);
 		
 		if(c - at_p_inf < num_roots && lower > -highest_root)
 			lower*=2;
@@ -363,7 +363,7 @@ vector<double> find_roots(const Vector<11>& v)
 	{
 		int at_lower, at_upper;
 
-		tie(lower, upper, at_lower, at_upper, lower_val, upper_val) = intervals.back();
+		std::tie(lower, upper, at_lower, at_upper, lower_val, upper_val) = intervals.back();
 		intervals.pop_back();
 
 		double midpoint = (upper + lower)/2;
@@ -374,7 +374,7 @@ vector<double> find_roots(const Vector<11>& v)
 			int at_midpoint;
 			double midpoint_val;
 
-			tie(at_midpoint, midpoint_val) = s.changes(midpoint);
+			std::tie(at_midpoint, midpoint_val) = s.changes(midpoint);
 
 
 			if(at_midpoint == at_lower)
@@ -391,7 +391,7 @@ vector<double> find_roots(const Vector<11>& v)
 				{
 					double root, rootval;
 
-					tie(root, rootval) = polish_root_newton(lower, midpoint, lower_val, midpoint_val, s);
+					std::tie(root, rootval) = polish_root_newton(lower, midpoint, lower_val, midpoint_val, s);
 					
 					//Discard poor-quality roots
 					if(fabs(rootval) < feps)
@@ -405,7 +405,7 @@ vector<double> find_roots(const Vector<11>& v)
 				{
 					double root, rootval;
 
-					tie(root, rootval) = polish_root_newton(midpoint, upper, midpoint_val, upper_val, s);
+					std::tie(root, rootval) = polish_root_newton(midpoint, upper, midpoint_val, upper_val, s);
 
 					//Discard poor-quality roots
 					if(fabs(rootval) < feps)

@@ -76,7 +76,7 @@ pair<Vector<NumNum-NumDenom+1>, Vector<NumDenom-1> > poly_div(Vector<NumNum> num
 }
 
 template<int N, int M>
-tuple<Vector<N>, Vector<M> > neg_second(const pair<Vector<N>, Vector<M> >& r)
+std::tuple<Vector<N>, Vector<M> > neg_second(const pair<Vector<N>, Vector<M> >& r)
 {
 	return make_pair(r.first, -r.second);
 }
@@ -130,7 +130,7 @@ struct SturmChain10
 	//
 	// Q_i is always of degree 1, so the number of sign changes
 	// can be evaluated using the recursion above efficiently.
-	tuple<int, double> changes(double x) const
+	std::tuple<int, double> changes(double x) const
 	{
 		int changes=0;
 		double v_prev_2 = polyval(f0, x);
@@ -237,7 +237,7 @@ template<class F> double polish_root_bisection(double lower, double upper, doubl
 	return (upper + lower)/2;
 }
 
-template<class F> tuple<double, double> polish_root_newton(double lower, double upper, double lower_val, double upper_val, const F& f)
+template<class F> std::tuple<double, double> polish_root_newton(double lower, double upper, double lower_val, double upper_val, const F& f)
 {
 	const double zeps = 1e-20;
 	const double eps  = 1e-15;
@@ -356,7 +356,7 @@ vector<double> find_roots(const Vector<11>& v)
 	//values.
 
 
-	vector<tuple<double, double, int, int, double, double> > intervals;
+	vector<std::tuple<double, double, int, int, double, double> > intervals;
 	intervals.push_back(make_tuple(lower, upper, at_n_inf, at_p_inf, lower_val, upper_val));
 
 	while(!intervals.empty())

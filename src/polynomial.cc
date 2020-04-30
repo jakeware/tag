@@ -95,7 +95,7 @@ struct SturmChain10
 	Vector<2 > f1;
 	Vector<1 > f0;
 
-	array<Vector<2>, 11> q;
+	std::array<Vector<2>, 11> q;
 
 	SturmChain10(const Vector<11>& p)
 	{
